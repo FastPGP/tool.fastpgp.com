@@ -1,0 +1,222 @@
+/* ----------- */
+/* Font styles */
+/* ----------- */
+
+@font-face {
+    font-family: Montserrat;
+    src:url("../fonts/Montserrat-Regular.ttf");
+}
+
+* {
+    font-family: 'Montserrat';
+}
+
+
+
+
+
+/* --------------- */
+/* Color variables */
+/* --------------- */
+:root {
+    --main: #09090C;
+    --accent: #FFEBD6;
+}
+
+
+
+
+
+/* -------------- */
+/* General styles */
+/* -------------- */
+html, body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    background-color: var(--main);
+    color: var(--accent);
+}
+
+button {
+    margin: 5px;
+    padding: 10px 25px;
+    background-color: var(--accent);
+    color: var(--main);
+    border: 1px solid var(--main);
+    transition: background-color 1s,
+                color .5s,
+                border 1s;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+button:hover, button.selected {
+    background-color: var(--main);
+    color: var(--accent);
+    border: 1px solid var(--accent);
+}
+
+a {
+    color: var(--accent);
+    text-decoration: none;
+}
+
+hr {
+    width: 90%;
+}
+
+footer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 15px;
+    text-align: center;
+}
+
+
+
+/* ---------------------- */
+/* Header and menu styles */
+/* ---------------------- */
+header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
+
+header > a {
+    width: 15%;
+    margin: 50px;
+}
+
+header > a > img {
+    width: 100%;
+}
+
+header > menu {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+
+
+/* -------------- */
+/* Options styles */
+/* -------------- */
+.option {
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 15px;
+    padding: 25px;
+    border: 1px solid var(--accent);
+}
+
+.option.selected {
+    display: flex;
+}
+
+.option > form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.option > form p {
+    cursor: pointer;
+    user-select: none;
+    align-self: center;
+}
+
+.option > form p::after {
+	 content: '';
+	 display: block;
+	 border-bottom: solid 2px var(--accent);  
+	 transform: scaleX(0);  
+	 transition: transform 300ms ease;
+}
+
+.option > form p:hover::after {
+	 transform: scaleX(1);  
+	 transform-origin: 0% 50%;
+}
+
+label {
+    margin-top: 10px;
+}
+
+input, textarea {
+    border: none;
+    background-color: white;
+    padding: 10px;
+    margin-top: 10px;
+}
+
+.inputs {
+    display: flex;
+}
+
+.outputs {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.input, .output {
+    display: flex;
+    flex-direction: column;
+    margin: 10px;
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.error {
+    border: 1px solid var(--accent);
+    padding: 15px;
+    margin: 25px;
+}
+
+/* ------------ */
+/* Phone styles */
+/* ------------ */
+@media only screen and (max-width: 768px) {
+    header a {
+        width: 60%;
+        margin: 50px;
+    }
+    
+    menu {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .inputs, .outputs {
+        display: flex;
+        flex-direction: column;
+    }
+
+    textarea {
+        max-width: 20em;
+    }
+}

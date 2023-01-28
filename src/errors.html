@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Technical Meta Tags -->
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Primary Meta Tags -->
+  <title>FastPGP - Tool errors</title>
+  <meta name="title" content="FastPGP - Tool errors">
+  <meta name="description" content="FastPGP - Fast and easy PGP utility and learning platform. Learn and use PGP easily, with our help.">
+
+  <!-- Open Graph / Facebook Meta Tags-->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://tool.fastpgp.com/errors">
+  <meta property="og:title" content="FastPGP - Tool errors">
+  <meta property="og:description" content="FastPGP - Fast and easy PGP utility and learning platform. Learn and use PGP easily, with our help.">
+  <meta property="og:image" content="https://tool.fastpgp.com/assets/imgs/logos/fastpgp_logo_square.png">
+
+  <!-- Twitter Meta Tags -->
+  <meta property="twitter:card" content="summary_large_image">
+  <meta property="twitter:url" content="https://tool.fastpgp.com/errors">
+  <meta property="twitter:title" content="FastPGP - Tool errors">
+  <meta property="twitter:description" content="FastPGP - Fast and easy PGP utility and learning platform. Learn and use PGP easily, with our help.">
+  <meta property="twitter:image" content="https://tool.fastpgp.com/assets/imgs/logos/fastpgp_logo_square.png">
+
+  <!-- Favicon -->
+  <link rel="shortcut icon" href="assets/imgs/favicon/favicon.ico">
+
+  <!-- STYLES -->
+  <link rel="stylesheet" href="assets/css/styles.css">
+</head>
+<body>
+  <!-- Heading -->
+  <header>
+    <a href="https://www.fastpgp.com"><img src="assets/imgs/logos/fastpgp_logo_text.png" alt="FastPGP logo"></a>
+    <h1>List of usual errors</h1>
+  </header>
+
+  <!-- Main -->
+  <main>
+    <div class="error">
+        <h3>Misformed armored text</h3>
+        <p>One or more inputs have unexpected input.</p>
+        <p>Check if Public Key input contains Public Key, Private Key input contains Private Key, or message input contains message.</p>
+    </div>
+    <div class="error">
+        <h3>Error decrypting private key: Incorrect key passphrase</h3>
+        <p>Passphrase does not belong to the private key.</p>
+        <p>Check for errors in the passphrase or in the private key.</p>
+    </div>
+    <div class="error">
+        <h3>Ascii armor integrity check failed</h3>
+        <p>Invalid private or public key.</p>
+        <p>Check for errors in the key.</p>
+    </div>
+    <div class="error">
+        <h3>Error decrypting message: Session key decryption failed.</h3>
+        <p>Message could not be decrypted with this private key.</p>
+        <p>This message was not encrypted with public key belonging to this private key.</p>
+        <p>If you have multiple private keys, check if you used the right one.</p>
+    </div>
+    <a href="https://tool.fastpgp.com"><button>Back to tool</button></a>
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <hr>
+    <i>We use Swetrix to gather analytics about this website usage.<br>None of your data is saved - more at <a href="https://swetrix.com">https://swetrix.com</a></i>
+    <a href="https://github.com/FastPGP"><h2>Check this project out at github!</h2></a>
+    <a href="https://www.fastpgp.com/donate"><h2>Donate to help with the development!</h2></a>
+    <i>- made by <a href="#">j4kubj</a> -</i>
+  </footer>
+
+  <!-- SWETRIX ANALYTICS CODE - WE DO NOT SAVE OR SHARE YOUR DATA, THIS IS JUST FOR INFORMATION PURPOSES -->
+  <script src="https://swetrix.org/swetrix.js" defer></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      swetrix.init('M4yVzYJK9i0L')
+      swetrix.trackViews()
+    })
+  </script>
+</body>
+</html>

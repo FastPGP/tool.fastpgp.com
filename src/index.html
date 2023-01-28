@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Technical Meta Tags -->
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Primary Meta Tags -->
+  <title>FastPGP - Tool</title>
+  <meta name="title" content="FastPGP - Tool">
+  <meta name="description" content="FastPGP - Fast and easy PGP utility and learning platform. Learn and use PGP easily, with our help.">
+
+  <!-- Open Graph / Facebook Meta Tags-->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://tool.fastpgp.com">
+  <meta property="og:title" content="FastPGP - Tool">
+  <meta property="og:description" content="FastPGP - Fast and easy PGP utility and learning platform. Learn and use PGP easily, with our help.">
+  <meta property="og:image" content="https://tool.fastpgp.com/assets/imgs/logos/fastpgp_logo_square.png">
+
+  <!-- Twitter Meta Tags -->
+  <meta property="twitter:card" content="summary_large_image">
+  <meta property="twitter:url" content="https://tool.fastpgp.com">
+  <meta property="twitter:title" content="FastPGP - Tool">
+  <meta property="twitter:description" content="FastPGP - Fast and easy PGP utility and learning platform. Learn and use PGP easily, with our help.">
+  <meta property="twitter:image" content="https://tool.fastpgp.com/assets/imgs/logos/fastpgp_logo_square.png">
+
+  <!-- Favicon -->
+  <link rel="shortcut icon" href="assets/imgs/favicon/favicon.ico">
+
+  <!-- OPENPGP SCRIPT -->
+  <script src="assets/js/openpgp/openpgp.min.js"></script>
+
+  <!-- FUNCTION SCRIPTS -->
+  <script src="assets/js/generate.js"></script>
+  <script src="assets/js/encrypt.js"></script>
+  <script src="assets/js/decrypt.js"></script>
+  <script src="assets/js/sign.js"></script>
+  <script src="assets/js/verify.js"></script>
+
+  <!-- OTHER SCRIPTS -->
+  <script src="assets/js/script.js"></script>
+
+  <!-- STYLES -->
+  <link rel="stylesheet" href="assets/css/styles.css">
+</head>
+<body>
+  <!-- Heading and menu for option selection -->
+  <header>
+    <a href="https://www.fastpgp.com"><img src="assets/imgs/logos/fastpgp_logo_text.png" alt="FastPGP logo"></a>
+    <menu>
+      <!-- Function to select button (this) and open the selected option (generate, encrypt, decrypt, sign, verify) -->
+      <button class="selected" onclick="menuSelect(this, 'generate')">Generate</button>
+      <button onclick="menuSelect(this, 'encrypt')">Encrypt</button>
+      <button onclick="menuSelect(this, 'decrypt')">Decrypt</button>
+      <button onclick="menuSelect(this, 'sign')">Sign</button>
+      <button onclick="menuSelect(this, 'verify')">Verify</button>
+    </menu>
+  </header>
+
+  <!-- Main -->
+  <main>
+    <!-- Section for "generate" option -->
+    <section class="option generate selected">
+      <form onsubmit="event.preventDefault(); generate('generateUsername', 'generateEmail', 'generatePassphrase', 'generatePrivateKey', 'generatePublicKey');">
+        <h2>Generate</h2>
+        <div class="inputs">
+          <div class="input"><label for="generateUsername">Username:</label><input type="text" name="generateUsername" placeholder="Username" required></div>
+          <div class="input"><label for="generateEmail">Email:</label><input type="email" name="generateEmail" placeholder="Email" required></div>
+          <div class="input"><label for="generatePassphrase">Passphrase:</label><input type="password" name="generatePassphrase" placeholder="Passphrase" required></div>
+        </div>
+
+        <button>Generate</button>
+        <hr>
+
+        <h2>Result</h2>
+        <div class="outputs">
+          <div class="output"><label for="generatePrivateKey">Private key:</label><textarea name="generatePrivateKey" cols="30" rows="10" placeholder="Result will be pasted here"></textarea><p onclick="copy('generatePrivateKey')">copy</p></div>
+          <div class="output"><label for="generatePublicKey">Public key:</label><textarea name="generatePublicKey" cols="30" rows="10" placeholder="Result will be pasted here"></textarea><p onclick="copy('generatePublicKey')">copy</p></div>
+        </div>
+
+        <p onclick="_clear()">clear</p>
+      </form>
+    </section>
+
+    <!-- Section for "encrypt" option -->
+    <section class="option encrypt">
+      <form onsubmit="event.preventDefault(); encrypt('encryptPublicKey', 'encryptMessage', 'encryptPrivateKey', 'encryptPassphrase', 'encryptEncryptedMessage')">
+        <h2>Encrypt</h2>
+        <div class="inputs">
+          <div class="input"><label for="encryptPublicKey">Receiver's public key:</label><textarea name="encryptPublicKey" cols="30" rows="10" placeholder="Receiver's public key" required></textarea></div>
+          <div class="input"><label for="encryptMessage">Message:</label><textarea name="encryptMessage" cols="30" rows="10" placeholder="Message" required></textarea></div>
+          <div class="input"><label for="encryptPrivateKey">Private key <b>(optional - for signing)</b>:</label><textarea name="encryptPrivateKey" cols="30" rows="10" placeholder="Private key"></textarea><label for="encryptPassphrase">Passphrase <b>(optional - for signing)</b>:</label><input type="password" name="encryptPassphrase" placeholder="Passphrase"></input></div>
+        </div>
+
+        <button>Encrypt</button>
+        <hr>
+
+        <h2>Result</h2>
+        <div class="outputs">
+          <div class="output"><label for="encryptEncryptedMessage">Encrypted message:</label><textarea name="encryptEncryptedMessage" cols="60" rows="10" placeholder="Result will be pasted here"></textarea><p onclick="copy('encryptEncryptedMessage')">copy</p></div>
+        </div>
+
+        <p onclick="_clear()">clear</p>
+      </form>
+    </section>
+
+    <!-- Section for "decrypt" option -->
+    <section class="option decrypt">
+      <form onsubmit="event.preventDefault(); decrypt('decryptEncryptedMessage', 'decryptPrivateKey', 'decryptPassphrase', 'decryptMessage')">
+        <h2>Decrypt</h2>
+        <div class="inputs">
+          <div class="input"><label for="decryptEncryptedMessage">Encrypted message:</label><textarea name="decryptEncryptedMessage" cols="30" rows="10" placeholder="Encrypted message" required></textarea></div>
+          <div class="input"><label for="decryptPrivateKey">Private key:</label><textarea name="decryptPrivateKey" cols="30" rows="10" placeholder="Private key" required></textarea><label for="decryptPassphrase">Passphrase:</label><input type="password" name="decryptPassphrase" placeholder="Passphrase" required></input></div>
+        </div>
+
+        <button>Decrypt</button>
+        <hr>
+
+        <h2>Result</h2>
+        <div class="outputs">
+          <div class="output"><label for="decryptMessage">Message:</label><textarea name="decryptMessage" cols="60" rows="10" placeholder="Result will be pasted here"></textarea><p onclick="copy('decryptMessage')">copy</p></div>
+        </div>
+
+        <p onclick="_clear()">clear</p>
+      </form>
+    </section>
+
+    <!-- Section for "sign" option -->
+    <section class="option sign">
+      <form onsubmit="event.preventDefault(); sign('signMessage', 'signPrivateKey', 'signPassphrase', 'signSignedMessage')">
+        <h2>Sign</h2>
+        <div class="inputs">
+          <div class="input"><label for="signMessage">Message:</label><textarea name="signMessage" cols="30" rows="10" placeholder="Message" required></textarea></div>
+          <div class="input"><label for="signPrivateKey">Private key:</label><textarea name="signPrivateKey" cols="30" rows="10" placeholder="Private key" required></textarea><label for="signPassphrase">Passphrase:</label><input type="password" name="signPassphrase" placeholder="Passphrase" required></input></div>
+        </div>
+
+        <button>Sign</button>
+        <hr>
+
+        <h2>Result</h2>
+        <div class="outputs">
+          <div class="output"><label for="signSignedMessage">Signed message:</label><textarea name="signSignedMessage" cols="60" rows="10" placeholder="Result will be pasted here"></textarea><p onclick="copy('signSignedMessage')">copy</p></div>
+        </div>
+
+        <p onclick="_clear()">clear</p>
+      </form>
+    </section>
+
+    <!-- Section for "verify" option -->
+    <section class="option verify">
+      <form onsubmit="event.preventDefault(); verify('verifyMessage', 'verifyPublicKey', 'verifyResult')">
+        <h2>Verify</h2>
+        <div class="inputs">
+          <div class="input"><label for="verifyMessage">Message:</label><textarea name="verifyMessage" cols="30" rows="10" placeholder="Message" required></textarea></div>
+          <div class="input"><label for="verifyPublicKey">Public key:</label><textarea name="verifyPublicKey" cols="30" rows="10" placeholder="Public key" required></textarea></div>
+        </div>
+
+        <button>Sign</button>
+        <hr>
+
+        <h2>Result</h2>
+        <div class="outputs">
+          <div class="output"><label for="verifyResult">Result:</label><textarea name="verifyResult" cols="60" rows="10" placeholder="Result will be pasted here"></textarea><p onclick="copy('verifyResult')">copy</p></div>
+        </div>
+
+        <p onclick="_clear()">clear</p>
+      </form>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <a href="https://tool.fastpgp.com/fastpgp-offline.zip"><button>Download and use this websites offline version - from your computer</button></a>
+    <hr>
+    <i>We use Swetrix to gather analytics about this website usage.<br>None of your data is saved - more at <a href="https://swetrix.com">https://swetrix.com</a></i>
+    <a href="https://github.com/FastPGP"><h2>Check this project out at github!</h2></a>
+    <a href="https://www.fastpgp.com/donate"><h2>Donate to help with the development!</h2></a>
+    <i>- made by <a href="#">j4kubj</a> -</i>
+  </footer>
+
+  <!-- SWETRIX ANALYTICS CODE - WE DO NOT SAVE OR SHARE YOUR DATA, THIS IS JUST FOR INFORMATION PURPOSES -->
+  <script src="https://swetrix.org/swetrix.js" defer></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      swetrix.init('M4yVzYJK9i0L')
+      swetrix.trackViews()
+    })
+  </script>
+</body>
+</html>
